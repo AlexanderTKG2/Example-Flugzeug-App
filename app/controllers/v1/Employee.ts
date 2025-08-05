@@ -1,12 +1,10 @@
 import { ModelController } from "@/libraries/ModelController";
+import { validateBody } from "@/libraries/Validator";
+import { CreateEmployeeSchema } from "@/validators/Employee";
 import { Employee } from "@/models/Employee";
-import { Router } from "express";
-import {
-  validateJWT,
-  filterOwner,
-  appendUser,
-  stripNestedObjects,
-} from "@/policies/General";
+import employeeService from "@/services/EmployeeService";
+import { Router, Request, Response } from "express";
+import { stripNestedObjects } from "@/policies/General";
 
 export class EmployeeController extends ModelController<Employee> {
   constructor() {
@@ -16,15 +14,26 @@ export class EmployeeController extends ModelController<Employee> {
   }
 
   routes(): Router {
-    this.router.get("/", (req, res) => this.handleFindAll(req, res));
-    this.router.get("/:id", (req, res) => this.handleFindOne(req, res));
-    this.router.post("/", stripNestedObjects(), (req, res) =>
-      this.handleCreate(req, res),
+    this.router.get("/", (req: Request, res: Response) =>
+      this.handleFindAll(req, res),
     );
-    this.router.put("/:id", stripNestedObjects(), (req, res) =>
-      this.handleUpdate(req, res),
+    this.router.get("/:id", (req: Request, res: Response) =>
+      this.handleFindOne(req, res),
     );
-    this.router.delete("/:id", (req, res) => this.handleDelete(req, res));
+    this.router.post(
+      "/",
+      validateBody(CreateEmployeeSchema),
+      (req: Request, res: Response) =>
+        employeeService.handleCreateEmployee(req, res),
+    );
+    this.router.put(
+      "/:id",
+      stripNestedObjects(),
+      (req: Request, res: Response) => this.handleUpdate(req, res),
+    );
+    this.router.delete("/:id", (req: Request, res: Response) =>
+      this.handleDelete(req, res),
+    );
 
     return this.router;
   }
