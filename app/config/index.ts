@@ -9,13 +9,13 @@ export const config = {
 
   jwt: {
     secret:
-      process.env.JWT_SECRET || "tIPGafKxVB_9ZPGTle8UsAyJ3UqhQkjfrHRGWWl6dVI",
+      process.env.JWT_SECRET || "tIPGafKxVB_9ZPGTle8UsAyJ3UqhQkjfrHRGWWl6dVI", // y
     access: {
       expiry: {
         unit: "hours",
-        length: process.env.JWT_EXPIRY_HOURS
-          ? parseInt(process.env.JWT_EXPIRY_HOURS)
-          : 30 * 24,
+        length: process.env.JWT_EXPIRY_HOURS // y
+          ? parseInt(process.env.JWT_EXPIRY_HOURS) // y
+          : 30 * 24, // y
       },
       subject: "access",
       audience: "user",
@@ -40,22 +40,22 @@ export const config = {
 
   email: {
     from_address:
-      process.env.EMAIL_FROM_ADDRESS || "MyApp <no-reply@example.com>",
-    host: process.env.EMAIL_SMTP_HOST || "smtp.gmail.com",
-    port: process.env.EMAIL_SMPT_PORT
-      ? parseInt(process.env.EMAIL_SMPT_PORT)
-      : 587,
-    secure: process.env.EMAIL_SMTP_SECURE
-      ? process.env.EMAIL_SMTP_SECURE === "true"
-      : true,
+      process.env.EMAIL_FROM_ADDRESS || "MyApp <no-reply@example.com>", // y
+    host: process.env.EMAIL_SMTP_HOST || "smtp.gmail.com", // y
+    port: process.env.EMAIL_SMPT_PORT // y
+      ? parseInt(process.env.EMAIL_SMPT_PORT) // y
+      : 587, // y
+    secure: process.env.EMAIL_SMTP_SECURE // y
+      ? process.env.EMAIL_SMTP_SECURE === "true" // y
+      : true, // y
     auth: {
-      user: process.env.EMAIL_SMTP_USER || "(your SMTP user)",
-      pass: process.env.EMAIL_SMTP_PASS || "(your SMTP password)",
+      user: process.env.EMAIL_SMTP_USER || "(your SMTP user)", // y
+      pass: process.env.EMAIL_SMTP_PASS || "(your SMTP password)", // y
     },
   },
 
   server: {
-    port: process.env.SERVER_PORT || 8888,
+    port: process.env.SERVER_PORT || 8888, // y
   },
 
   api: {
@@ -68,31 +68,31 @@ export const config = {
 
   log: {
     // Console Log levels: error, warn, info, verbose, debug, silly
-    level: process.env.LOG_LEVEL || "debug",
-    logToFiles: process.env.LOG_TO_FILES
-      ? process.env.LOG_TO_FILES === "true"
-      : false,
+    level: process.env.LOG_LEVEL || "debug", // y
+    logToFiles: process.env.LOG_TO_FILES // y
+      ? process.env.LOG_TO_FILES === "true" // y
+      : false, // y
   },
 
   urls: {
     // Url config as seen from the user NOT NECESSARILY THE SAME AS SERVER
     // http or https
-    protocol: process.env.URLS_PROTOCOL || "http",
-    url: process.env.URLS_URL || ip.address(),
-    port: process.env.URLS_PORT ? String(process.env.URLS_PORT) : "",
-    apiRoot: process.env.URLS_API_ROOT || "/api/v1",
+    protocol: process.env.URLS_PROTOCOL || "http", // y
+    url: process.env.URLS_URL || ip.address(), // y
+    port: process.env.URLS_PORT ? String(process.env.URLS_PORT) : "", // y
+    apiRoot: process.env.URLS_API_ROOT || "/api/v1", // y
     base: "",
     baseApi: "",
   },
 
   db: {
-    database: process.env.DB_NAME || "",
-    username: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "",
-    host: process.env.DB_HOST || "localhost",
-    dialect: (process.env.DB_TYPE || "sqlite") as Dialect,
+    database: process.env.DB_NAME || "", // y
+    username: process.env.DB_USER || "root", // y
+    password: process.env.DB_PASSWORD || "", // y
+    host: process.env.DB_HOST || "localhost", // y
+    dialect: (process.env.DB_TYPE || "sqlite") as Dialect, // y
     logging: false,
-    storage: process.env.DB_STORAGE || "db.sqlite",
+    storage: process.env.DB_STORAGE || "db.sqlite", // y
     timezone: "utc", // IMPORTANT For correct timezone management with DB.
   },
 };
