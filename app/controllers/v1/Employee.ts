@@ -4,12 +4,7 @@ import { CreateEmployeeSchema } from "@/validators/Employee";
 import { Employee } from "@/models/Employee";
 import employeeService from "@/services/EmployeeService";
 import { Router, Request, Response } from "express";
-import {
-  validateJWT,
-  filterOwner,
-  appendUser,
-  stripNestedObjects,
-} from "@/policies/General";
+import { stripNestedObjects } from "@/policies/General";
 
 export class EmployeeController extends ModelController<Employee> {
   constructor() {
@@ -25,15 +20,12 @@ export class EmployeeController extends ModelController<Employee> {
     this.router.get("/:id", (req: Request, res: Response) =>
       this.handleFindOne(req, res),
     );
-    // update this
-    // stripNestedObjects(),
     this.router.post(
       "/",
       validateBody(CreateEmployeeSchema),
       (req: Request, res: Response) =>
         employeeService.handleCreateEmployee(req, res),
     );
-    // update thus
     this.router.put(
       "/:id",
       stripNestedObjects(),
