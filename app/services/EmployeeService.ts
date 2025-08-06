@@ -1,7 +1,7 @@
 import { log } from "@/libraries/Log";
 import { Employee } from "@/models/Employee";
 import { mapNewEmployeeData } from "@/mappers/employeeMapper";
-import { handleServerError, Controller } from "@/libraries/Controller";
+import { handleCommonServerErrors, Controller } from "@/libraries/Controller";
 import { Request, Response } from "express";
 
 export class EmployeeService {
@@ -14,7 +14,7 @@ export class EmployeeService {
     } catch (error) {
       log.error("An errror occurred when creating a new employee");
       log.error(error.message);
-      return handleServerError(error, res);
+      return handleCommonServerErrors(error, res);
     }
   }
 }
