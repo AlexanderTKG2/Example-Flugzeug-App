@@ -1,0 +1,20 @@
+{
+  "method": "POST",
+  "url": "MOCK_URL",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "cookies": "MOCK_COOKIES",
+  "query": {},
+  "params": {},
+  "body": {
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "position": "position",
+    "salary": 10000,
+    "workEmail": "email@example.com",
+    "personalEmail": "email@example.com",
+    "personalPhone": "9999000000",
+    "country": "country"
+  }
+}

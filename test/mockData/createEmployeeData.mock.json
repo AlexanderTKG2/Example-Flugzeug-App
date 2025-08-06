@@ -1,0 +1,10 @@
+{
+	"firstName": "John",
+	"lastName": "Doe",
+	"position": "Worker",
+	"salary": 10000,
+	"workEmail": "email@example.com",
+	"personalEmail": "email@example.com",
+	"personalPhone": "9999000000",
+	"country": "Mexico"
+}

@@ -12,8 +12,8 @@ export class EmployeeService {
       const newEmployee = await Employee.create(newEmployeeData);
       return Controller.created(res, newEmployee);
     } catch (error) {
-      log.console.error("An errror occurred when creating a new employee");
-      log.console.error(error.message);
+      log.error("An errror occurred when creating a new employee");
+      log.error(error.message);
       return handleServerError(error, res);
     }
   }
