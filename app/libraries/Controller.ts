@@ -5,7 +5,12 @@ import _ from "lodash";
 export enum ControllerErrors {
   NOT_FOUND,
   BAD_REQUEST,
+  UNAUTHORIZED,
+  FORBIDDEN,
+  CONFLICT,
+  INSTANCE_NOT_FOUND,
   UNKNOWN_ERROR,
+  TOO_MANY_REQUESTS,
 }
 
 export function parseId(req: Request): number {
@@ -115,6 +120,45 @@ export function handleServerError(err: any, res: Response) {
   }
   if (err === ControllerErrors.BAD_REQUEST) {
     return Controller.badRequest(res);
+  }
+  if (isDBConstraintError(err)) {
+    return handleDatabaseConstraintsError(err, res);
+  }
+  return Controller.serverError(res, err);
+}
+
+export function handleCommonServerErrors(err, res): any {
+  if (_.isObjectLike(err)) {
+    if (err.type === ControllerErrors.NOT_FOUND) {
+      return Controller.notFound(res, err.data);
+    }
+    if (err.type === ControllerErrors.UNAUTHORIZED) {
+      return Controller.unauthorized(res, err.data);
+    }
+    if (err.type === ControllerErrors.FORBIDDEN) {
+      return Controller.forbidden(res, err.data);
+    }
+    if (err.type === ControllerErrors.BAD_REQUEST) {
+      return Controller.badRequest(res, err.data);
+    }
+    if (err.type === ControllerErrors.CONFLICT) {
+      return Controller.conflict(res, err.data);
+    }
+  }
+  if (err === ControllerErrors.NOT_FOUND) {
+    return Controller.notFound(res);
+  }
+  if (err === ControllerErrors.BAD_REQUEST) {
+    return Controller.badRequest(res);
+  }
+  if (err === ControllerErrors.UNAUTHORIZED) {
+    return Controller.unauthorized(res);
+  }
+  if (err === ControllerErrors.FORBIDDEN) {
+    return Controller.forbidden(res);
+  }
+  if (err === ControllerErrors.CONFLICT) {
+    return Controller.conflict(res);
   }
   if (isDBConstraintError(err)) {
     return handleDatabaseConstraintsError(err, res);
