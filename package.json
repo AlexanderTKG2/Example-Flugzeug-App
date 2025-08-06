@@ -15,7 +15,7 @@
     "makemigration": "gulp makemigration",
     "sql": "gulp sql",
     "start": "node --require source-map-support/register dist/main.js",
-    "test": "gulp && mocha dist/test --recursive",
+    "test": "jest",
     "lint": "tsc --noEmit && eslint \"app/**/*.{js,ts}\" --fix",
     "format": "prettier --write \"app/**/*.{js,ts}\""
   },
@@ -31,6 +31,7 @@
     "@types/helmet": "0.0.38",
     "@types/i18n": "0.8.7",
     "@types/ip": "0.0.31",
+    "@types/jest": "^29.5.12",
     "@types/joi": "^14.3.4",
     "@types/jsonwebtoken": "7.2.8",
     "@types/lodash": "4.14.161",
@@ -55,7 +56,9 @@
     "gulp-sourcemaps": "2.6.5",
     "gulp-ts-alias": "1.1.0",
     "gulp-typescript": "4.0.2",
+    "jest": "^30.0.5",
     "mocha": "7.1.1",
+    "ts-jest": "^29.4.1",
     "typescript": "5.0.4"
   },
   "dependencies": {
@@ -83,6 +86,7 @@
     "prettier": "^1.19.1",
     "reflect-metadata": "0.1.13",
     "require-dir-all": "0.4.15",
+    "rewire": "^9.0.0",
     "sequelize": "5.21.3",
     "sequelize-typescript": "1.1.0",
     "serve-favicon": "2.5.0",
