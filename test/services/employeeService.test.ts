@@ -26,7 +26,7 @@ jest.mock("@/mappers/employeeMapper", () => {
 
 jest.mock("@/libraries/Controller", () => {
   return {
-    handleServerError: jest.fn(),
+    handleCommonServerErrors: jest.fn(),
     Controller: {
       created: jest.fn(() => {
         return null;
@@ -60,7 +60,7 @@ describe("Employee service", () => {
       ok: () => void 0,
       conflict: () => void 0,
     },
-    handleServerError: null,
+    handleCommonServerErrors: null,
   };
 
   beforeAll(() => {
